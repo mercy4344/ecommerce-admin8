@@ -1,22 +1,23 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { StoreModal } from "@/components/modals/store-modal";
-import{ useEffect, useState} from "react";
 
 export const ModalProvider = () => {
-    const [isMounted, setisMounted] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        setisMounted(true);
+        setIsMounted(true);
     }, []);
-    if(!isMounted){
+
+    if (!isMounted) {
         return null;
     }
 
-    return(
+    return (
         <>
-
-        <StoreModal />
+            <StoreModal />
         </>
-    );
-};
+    )
+}
