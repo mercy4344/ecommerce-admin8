@@ -9,15 +9,15 @@
 //       output: "standalone", // Ensures a full Node.js environment
 //       runtime: "nodejs", // Enforces Node.js runtime
 //   };
-  
+
 //   export default nextConfig;
-  
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
         domains: ["res.cloudinary.com"],
     },
-    
+
     // Optional: Add redirects for better development experience
     async redirects() {
         return [
@@ -78,7 +78,7 @@ const nextConfig = {
                     // CORS headers
                     {
                         key: "Access-Control-Allow-Origin",
-                        value: process.env.FRONTEND_STORE_URL || "https://bagenvy.vercel.app",
+                        value: process.env.FRONTEND_STORE_URL || "https://ecommerce-store1-kappa.vercel.app",
                     },
                     {
                         key: "Access-Control-Allow-Methods",

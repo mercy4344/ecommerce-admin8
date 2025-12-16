@@ -6,13 +6,13 @@ import type { NextRequest, NextFetchEvent } from "next/server";
 function handleCors(request: NextRequest) {
     const origin = request.headers.get("origin");
     const allowedOrigins = [
-        process.env.FRONTEND_STORE_URL || "https://bagenvy.vercel.app",
-        "https://rwaya-admin.vercel.app", // Production URL
+        process.env.FRONTEND_STORE_URL || "https://ecommerce-store1-kappa.vercel.app",
+        "https://ecommerce-admin8.vercel.app", // Production URL
     ];
 
     // Check if origin is allowed
     const isAllowedOrigin = origin && allowedOrigins.includes(origin);
-    
+
     const corsHeaders = {
         "Access-Control-Allow-Origin": isAllowedOrigin ? origin : allowedOrigins[0],
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, PATCH",
@@ -52,23 +52,23 @@ export default function middleware(request: NextRequest, event: NextFetchEvent) 
     // Add CORS headers to all API responses
     if (request.nextUrl.pathname.startsWith("/api/")) {
         const response = clerkMiddleware(request, event);
-        
+
         // If it's a Response, add CORS headers
         if (response instanceof Response) {
             const origin = request.headers.get("origin");
             const allowedOrigins = [
-                process.env.FRONTEND_STORE_URL || "https://bagenvy.vercel.app",
-                "https://bagenvy.vercel.app",
+                process.env.FRONTEND_STORE_URL || "https://ecommerce-store1-kappa.vercel.app",
+                "https://ecommerce-store1-kappa.vercel.app",
             ];
-            
+
             const isAllowedOrigin = origin && allowedOrigins.includes(origin);
-            
+
             response.headers.set("Access-Control-Allow-Origin", isAllowedOrigin ? origin : allowedOrigins[0]);
             response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
             response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization, Accept, X-Requested-With, Origin");
             response.headers.set("Vary", "Origin, Access-Control-Request-Method, Access-Control-Request-Headers");
         }
-        
+
         return response;
     }
 
